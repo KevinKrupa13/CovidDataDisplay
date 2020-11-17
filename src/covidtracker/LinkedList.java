@@ -21,17 +21,7 @@ public class LinkedList<T> implements ListInterface<T> {
             this.next = next;
         }
         
-        public Node<T> getNextNode() {
-            return this.next;
-        }
         
-        public T getData() {
-            return this.data;
-        }
-        
-        public void setNextNode(Node<T> node) {
-            this.next = node;
-        }
         
     }
     
