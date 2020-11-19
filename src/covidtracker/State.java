@@ -10,22 +10,29 @@ package covidtracker;
 public class State {
     
     private String name;
-    private double stateCFR;
     private LinkedList<Race> race;
     
-    public State(String name) {
+    public State(String name, LinkedList<Race> race) {
         this.name = name;
-        
+        this.race = race;
     }
     
-    
     /**
-     * gets name of state
+     * Gets the name of the state
+     * 
+     * @return name of state
      */
     public String getName() {
         return name;
     }
     
-    
+    /**
+     * Gets the states race LinkedList
+     * 
+     * @return LinkedList of type race
+     */
+    public LinkedList<Race> getRace() {
+        return race;
+    }
 
 }
