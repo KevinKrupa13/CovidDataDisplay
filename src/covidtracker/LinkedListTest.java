@@ -60,6 +60,19 @@ public class LinkedListTest extends TestCase {
         assertEquals("Collin", list.get(1));
         assertEquals("{Allan, Collin, Stacy, Storm}", list.toString());
     }
+    
+    /**
+     * test sort by CTF
+     */
+    public void testSortCTF() {
+        LinkedList<Integer> list2 = new LinkedList<Integer>();
+        list2.add(13873);
+        list2.add(3858);
+        list2.add(13773);
+        list2.add(294);
+        list2.sortCFT(list2);
+        assertEquals("{294, 3858, 13773, 13873}", list2.toString());
+    }
 
     /**
      * test hasNext false

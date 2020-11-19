@@ -387,7 +387,7 @@ public class LinkedList<T> implements LList<T> {
      *            to sort
      * @return sorted list
      */
-    public LinkedList<String> sortAlpha(LinkedList<String> list) {
+    public void sortAlpha(LinkedList<String> list) {
         for (int i = 1; i < list.size(); i++) {
             String s = list.get(i);
             int j = i - 1;
@@ -397,10 +397,24 @@ public class LinkedList<T> implements LList<T> {
                 list.set(j, y);
                 j--;
             }
-            String y = list.get(j + 1);
-            y = s;
         }
-        return list;
+    }
+
+
+    /**
+     * method to sort CFR
+     */
+    public void sortCFT(LinkedList<Integer> list) {
+        for (int i = 1; i < list.size(); i++) {
+            Integer s = list.get(i);
+            int j = i - 1;
+            while (j >= 0 && s.compareTo(list.get(j)) < 0) {
+                Integer y = list.get(j + 1);
+                list.set(j + 1, list.get(j));
+                list.set(j, y);
+                j--;
+            }
+        }
     }
 
 
