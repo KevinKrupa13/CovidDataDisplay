@@ -1,4 +1,4 @@
-package covidtracker;
+package prj5;
 
 @SuppressWarnings("serial")
 public class CovidDataException extends Exception {

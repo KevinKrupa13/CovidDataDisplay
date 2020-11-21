@@ -1,7 +1,7 @@
 /**
  * 
  */
-package covidtracker;
+package prj5;
 
 /**
  * @author suhad

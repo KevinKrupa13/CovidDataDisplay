@@ -1,4 +1,4 @@
-package covidtracker;
+package prj5;
 
 public class StateTest extends student.TestCase {
 
