@@ -12,9 +12,7 @@ import student.TestCase;
  *
  */
 public class LinkedListTest extends TestCase {
-    /**
-     * the list we will use
-     */
+    
     private LinkedList<String> list;
 
     /**
@@ -22,9 +20,30 @@ public class LinkedListTest extends TestCase {
      */
     @Override
     public void setUp() {
-        list = new LinkedList<String>();
+        list = new LinkedList<String>();        
     }
 
+    /**
+     * test insertion sort
+     * @throws CovidDataException 
+     */
+    public void testInsertion() throws CovidDataException {
+        LinkedList<Race> raceList = new LinkedList<Race>();
+        Race race1 = new Race("Asian", 1122398, 51012);
+        Race race2 = new Race("White", 248728, 2526);
+        Race race3 = new Race("Black", 55272835, 25642);
+        raceList.add(race1);
+        raceList.add(race2);
+        raceList.add(race3);
+        raceList.insertionSort(Race.COMPARE_BY_RACE);
+        assertEquals(race1, raceList.get(0));
+        assertEquals(race3, raceList.get(1));
+        assertEquals(race2, raceList.get(2));
+        raceList.insertionSort(Race.COMPARE_BY_CFR);
+        assertEquals(race2, raceList.get(0));
+        assertEquals(race3, raceList.get(1));
+        assertEquals(race1, raceList.get(2));
+    }
 
     /**
      * test hasNext
@@ -35,44 +54,11 @@ public class LinkedListTest extends TestCase {
         list.add("C");
         Iterator<String> iter = list.iterator();
         assertTrue(iter.hasNext());
+        iter.next();
+        assertEquals(3, list.size());
     }
-    
-    /**
-     * tests set method
-     */
-    public void testSet() {
-        list.add("A");
-        list.add("B");
-        list.add("C");
-        list.set(1, "X");
-        assertEquals("X", list.get(1));
-    }
-    
-    /**
-     * test sort by alphabetical
-     */
-    public void testSortAlpha() {
-        list.add("Allan");
-        list.add("Stacy");
-        list.add("Collin");
-        list.add("Storm");
-        list.sortAlpha(list);
-        assertEquals("Collin", list.get(1));
-        assertEquals("{Allan, Collin, Stacy, Storm}", list.toString());
-    }
-    
-    /**
-     * test sort by CTF
-     */
-    public void testSortCTF() {
-        LinkedList<Integer> list2 = new LinkedList<Integer>();
-        list2.add(13873);
-        list2.add(3858);
-        list2.add(13773);
-        list2.add(294);
-        list2.sortCFT(list2);
-        assertEquals("{294, 3858, 13773, 13873}", list2.toString());
-    }
+
+
 
     /**
      * test hasNext false
@@ -111,6 +97,8 @@ public class LinkedListTest extends TestCase {
         assertTrue("next() is throwing the wrong type of exceptions",
             exception instanceof NoSuchElementException);
     }
+
+
 
 
     /**
@@ -375,5 +363,4 @@ public class LinkedListTest extends TestCase {
         }
         assertTrue(exception instanceof IndexOutOfBoundsException);
     }
-
 }
