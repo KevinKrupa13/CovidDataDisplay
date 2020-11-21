@@ -12,7 +12,7 @@ import student.TestCase;
  *
  */
 public class LinkedListTest extends TestCase {
-    
+
     private LinkedList<String> list;
 
     /**
@@ -20,17 +20,19 @@ public class LinkedListTest extends TestCase {
      */
     @Override
     public void setUp() {
-        list = new LinkedList<String>();        
+        list = new LinkedList<String>();
     }
+
 
     /**
      * test insertion sort
-     * @throws CovidDataException 
+     * 
+     * @throws CovidDataException
      */
     public void testSortAlpha() throws CovidDataException {
         LinkedList<Race> raceList = new LinkedList<Race>();
-        Race race1 = new Race("Asian", 100, 5);  
-        Race race2 = new Race("White", 200, 50);   
+        Race race1 = new Race("Asian", 100, 5);
+        Race race2 = new Race("White", 200, 50);
         Race race3 = new Race("Black", 90, 3);
         raceList.add(race1);
         raceList.add(race2);
@@ -40,27 +42,29 @@ public class LinkedListTest extends TestCase {
         assertEquals(race1, raceList.get(0));
         assertEquals(race3, raceList.get(1));
         assertEquals(race2, raceList.get(2));
-        
+
     }
-    
+
+
     /**
-     * @throws CovidDataException 
+     * @throws CovidDataException
      * 
      */
     public void testCFR() throws CovidDataException {
         LinkedList<Race> raceList = new LinkedList<Race>();
-        Race race1 = new Race("Asian", 100, 50);  
-        Race race2 = new Race("White", 879, 584);   
-        Race race3 = new Race("Black", 2520, 92);
+        Race race1 = new Race("Asian", 100, 50);
+        Race race2 = new Race("White", 100, 80);
+        Race race3 = new Race("Black", 100, 30);
         raceList.add(race1);
         raceList.add(race2);
         raceList.add(race3);
         SortByCFR sort = new SortByCFR();
         raceList.insertionSort(sort);
-        assertEquals(race1, raceList.get(0));
-        assertEquals(race2, raceList.get(1));
+        assertEquals(race2, raceList.get(0));
+        assertEquals(race1, raceList.get(1));
         assertEquals(race3, raceList.get(2));
     }
+
 
     /**
      * test hasNext
@@ -74,7 +78,6 @@ public class LinkedListTest extends TestCase {
         iter.next();
         assertEquals(3, list.size());
     }
-
 
 
     /**
@@ -114,8 +117,6 @@ public class LinkedListTest extends TestCase {
         assertTrue("next() is throwing the wrong type of exceptions",
             exception instanceof NoSuchElementException);
     }
-
-
 
 
     /**

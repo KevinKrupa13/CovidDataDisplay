@@ -34,7 +34,7 @@ public class Race {
 
 
     public double calculateCFR() {
-        return (getDeaths() / getCases()) * 100;
+        return (new Double(getDeaths()) / new Double(getCases())) * 100;
     }
 
 

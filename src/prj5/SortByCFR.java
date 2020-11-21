@@ -8,7 +8,7 @@ public class SortByCFR implements Comparator<Race> {
     public int compare(Race o1, Race o2) {
         Double aa = o1.calculateCFR();
         Double bb = o2.calculateCFR();
-        
+
         if (aa > bb) {
             return -1;
         }
@@ -17,7 +17,5 @@ public class SortByCFR implements Comparator<Race> {
         }
         return 1;
     }
-    
-    
 
 }
