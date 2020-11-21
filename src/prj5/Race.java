@@ -1,8 +1,6 @@
 package prj5;
 
-import java.util.Comparator;
-
-public class Race implements Comparator<Race> {
+public class Race {
 
     private String race;
     private long numberOfDeaths;
@@ -71,55 +69,5 @@ public class Race implements Comparator<Race> {
         return string.toString();
     }
 
-    /**
-     * A new comparator to compare race by alpha
-     */
-    public static final Comparator<Race> COMPARE_BY_RACE =
-        new Comparator<Race>() {
-            /**
-             * Compare race 1 and race 2
-             * 
-             * @param o1
-             *            the first race
-             * @param o2
-             *            the second race
-             * @return an int based on the race data comparison
-             */
-            @Override
-            public int compare(Race o1, Race o2) {
-                return o1.getRace().compareTo(o2.getRace());
-            }
-        };
-
-    /**
-     * A new comparator to compare race by cfr
-     */
-    public static final Comparator<Race> COMPARE_BY_CFR =
-        new Comparator<Race>() {
-            /**
-             * Compare cfr 1 and cfr 2
-             * 
-             * @param o1
-             *            the first cfr
-             * @param o2
-             *            the second cfr
-             * @return an int based on the race data comparison
-             */
-            @Override
-            public int compare(Race o1, Race o2) {
-                if (o1.calculateCFR() > o2.calculateCFR()) {
-                    return -1;
-                }
-                else if (o1.calculateCFR() == (o2.calculateCFR())) {
-                    return o1.getRace().compareTo(o2.getRace());
-                }
-                return 1;
-            }
-        };
-
-    @Override
-    public int compare(Race o1, Race o2) {
-        return o1.getRace().compareTo(o2.getRace());
-    }
 
 }

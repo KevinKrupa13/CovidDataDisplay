@@ -27,22 +27,39 @@ public class LinkedListTest extends TestCase {
      * test insertion sort
      * @throws CovidDataException 
      */
-    public void testInsertion() throws CovidDataException {
+    public void testSortAlpha() throws CovidDataException {
         LinkedList<Race> raceList = new LinkedList<Race>();
-        Race race1 = new Race("Asian", 1122398, 51012);
-        Race race2 = new Race("White", 248728, 2526);
-        Race race3 = new Race("Black", 55272835, 25642);
+        Race race1 = new Race("Asian", 100, 5);  
+        Race race2 = new Race("White", 200, 50);   
+        Race race3 = new Race("Black", 90, 3);
         raceList.add(race1);
         raceList.add(race2);
         raceList.add(race3);
-        raceList.insertionSort(Race.COMPARE_BY_RACE);
+        SortByAlpha sort = new SortByAlpha();
+        raceList.insertionSort(sort);
         assertEquals(race1, raceList.get(0));
         assertEquals(race3, raceList.get(1));
         assertEquals(race2, raceList.get(2));
-        raceList.insertionSort(Race.COMPARE_BY_CFR);
-        assertEquals(race2, raceList.get(0));
-        assertEquals(race3, raceList.get(1));
-        assertEquals(race1, raceList.get(2));
+        
+    }
+    
+    /**
+     * @throws CovidDataException 
+     * 
+     */
+    public void testCFR() throws CovidDataException {
+        LinkedList<Race> raceList = new LinkedList<Race>();
+        Race race1 = new Race("Asian", 100, 50);  
+        Race race2 = new Race("White", 879, 584);   
+        Race race3 = new Race("Black", 2520, 92);
+        raceList.add(race1);
+        raceList.add(race2);
+        raceList.add(race3);
+        SortByCFR sort = new SortByCFR();
+        raceList.insertionSort(sort);
+        assertEquals(race1, raceList.get(0));
+        assertEquals(race2, raceList.get(1));
+        assertEquals(race3, raceList.get(2));
     }
 
     /**
