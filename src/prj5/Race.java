@@ -36,7 +36,7 @@ public class Race implements Comparator<Race> {
 
 
     public double calculateCFR() {
-        return (this.numberOfDeaths / this.numberOfCases) * 100;
+        return (getDeaths() / getCases()) * 100;
     }
 
 
@@ -72,7 +72,7 @@ public class Race implements Comparator<Race> {
     }
 
     /**
-     * A new comparator to compare songs by their title
+     * A new comparator to compare race by alpha
      */
     public static final Comparator<Race> COMPARE_BY_RACE =
         new Comparator<Race>() {
@@ -92,7 +92,7 @@ public class Race implements Comparator<Race> {
         };
 
     /**
-     * A new comparator to compare songs by their title
+     * A new comparator to compare race by cfr
      */
     public static final Comparator<Race> COMPARE_BY_CFR =
         new Comparator<Race>() {
@@ -107,13 +107,13 @@ public class Race implements Comparator<Race> {
              */
             @Override
             public int compare(Race o1, Race o2) {
-                if (o1.calculateCFR() < o2.calculateCFR()) {
+                if (o1.calculateCFR() > o2.calculateCFR()) {
                     return -1;
                 }
-                else if (o1.calculateCFR() > o2.calculateCFR()) {
-                    return 1;
+                else if (o1.calculateCFR() == (o2.calculateCFR())) {
+                    return o1.getRace().compareTo(o2.getRace());
                 }
-                return 0;
+                return 1;
             }
         };
 
