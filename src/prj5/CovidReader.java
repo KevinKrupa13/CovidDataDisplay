@@ -80,6 +80,7 @@ public class CovidReader {
         State state = null;
         LinkedList<Race> races = null;
         Race race = null;
+        double CFR;
         for (int i = 0; i < 6; i++) {
             state = states.get(i);
             races = state.getRace();
@@ -89,7 +90,13 @@ public class CovidReader {
                 race = races.get(x);
                 System.out.print(race.getRace() + ": ");
                 System.out.print(race.getCases() + " cases, ");
-                System.out.println(race.calculateCFR() + "% CFR");
+                CFR = race.calculateCFR();
+                if (CFR < 0) {
+                    System.out.println(((int)CFR) + "% CFR");
+                }
+                else {
+                    System.out.println(race.calculateCFR() + "% CFR");
+                }               
             }
             System.out.println("=====");
             races.insertionSort(new SortByCFR());
@@ -97,7 +104,13 @@ public class CovidReader {
                 race = races.get(x);
                 System.out.print(race.getRace() + ": ");
                 System.out.print(race.getCases() + " cases, ");
-                System.out.println(race.calculateCFR() + "% CFR");
+                CFR = race.calculateCFR();
+                if (CFR < 0) {
+                    System.out.println(((int)CFR) + "% CFR");
+                }
+                else {
+                    System.out.println(race.calculateCFR() + "% CFR");
+                }
             }
             System.out.println("=====");
         }
