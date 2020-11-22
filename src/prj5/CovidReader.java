@@ -13,7 +13,6 @@ public class CovidReader {
         CovidDataException {
         states = new LinkedList<State>();
         dataReader(fileName);
-        // races = raceReader(fileName);
     }
 
 
@@ -27,9 +26,9 @@ public class CovidReader {
             String a = scan.nextLine();
             String[] data = a.split(",", 11);
             String state = data[0];
-            for (int i = 1; i < data.length; i++) {
-                System.out.println(data[i]);
-            }
+//            for (int i = 0; i < data.length; i++) {
+//                System.out.print(data[i]);
+//            }
             String[] casesStr = { "", "", "", "", "" };
             String[] deathsStr = { "", "", "", "", "" };
             for (int i = 1; i < 6; i++) {
@@ -42,9 +41,10 @@ public class CovidReader {
             int[] cases = parseInt(casesStr);
             State st = new State(state, cases, deaths);
             states.add(st);
-            System.out.println(state);
-            System.out.println(states);
         }
+        
+        printer();
+        
         scan.close();
     }
 
@@ -65,6 +65,33 @@ public class CovidReader {
 
     public LinkedList<State> getStates() {
         return states;
+    }
+    
+    private void printer() {
+        State state = null;
+        LinkedList<Race> races = null;
+        Race race = null;
+        for (int i = 0; i < 6; i++) {
+            state = states.get(i);
+            races = state.getRace();
+            // Sort the races variable alphabetically here
+            System.out.println(state.getName());
+            for (int x = 0; x < 5; x++) {
+                race = races.get(x);
+                System.out.print(race.getRace() + ": ");
+                System.out.print(race.getCases() + " cases, ");
+                System.out.println(race.calculateCFR() + "% CFR");
+            }
+            System.out.println("=====");
+            // Sort the races variable by CFR values
+            for (int x = 0; x < 5; x++) {
+                race = races.get(x);
+                System.out.print(race.getRace() + ": ");
+                System.out.print(race.getCases() + " cases, ");
+                System.out.println(race.calculateCFR() + "% CFR");
+            }
+            System.out.println("=====");
+        }
     }
 
 // private LinkedList<Race> raceReader(String fileName)
