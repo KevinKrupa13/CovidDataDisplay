@@ -1,12 +1,13 @@
 package prj5;
 
 /**
+ * CovidReader is the class we use
+ * to read through our data
  * 
  * @author Kevin Krupa (kevinkrupa13)
- * @version 11/21/20
  * @author Suha Dewan (suhad)
- * @version 11/21/20
- *
+ * 
+ * @version 2020.21.11
  */
 
 import java.io.File;
@@ -17,17 +18,36 @@ public class CovidReader {
 
     private LinkedList<State> states;
 
-    public CovidReader(String fileName)
-        throws FileNotFoundException,
-        CovidDataException {
+    /**
+     * Constructor for the covid reader class
+     * 
+     * Modifies the states linked list to hold all
+     * the states with their respective
+     * race linked lists after scanning through the data
+     * 
+     * @param fileName
+     *            File you are scanning through
+     * @throws FileNotFoundException
+     *             Thrown if the file was not found
+     * @throws CovidDataException
+     *             Thrown if the file was missing information
+     */
+    public CovidReader(String fileName) throws FileNotFoundException {
         states = new LinkedList<State>();
         dataReader(fileName);
     }
 
 
-    private void dataReader(String filename)
-        throws FileNotFoundException,
-        CovidDataException {
+    /**
+     * Private dataReader method reads through the data
+     * and modifies the states variable
+     * 
+     * @param filename
+     *            File you are scanning
+     * @throws FileNotFoundException
+     *             Thrown if the file was not found
+     */
+    private void dataReader(String filename) throws FileNotFoundException {
         File input = new File(filename);
         Scanner scan = new Scanner(input);
         scan.nextLine();
@@ -35,9 +55,6 @@ public class CovidReader {
             String a = scan.nextLine();
             String[] data = a.split(",", 11);
             String state = data[0];
-//            for (int i = 0; i < data.length; i++) {
-//                System.out.print(data[i]);
-//            }
             String[] casesStr = { "", "", "", "", "" };
             String[] deathsStr = { "", "", "", "", "" };
             for (int i = 1; i < 6; i++) {
@@ -51,13 +68,23 @@ public class CovidReader {
             State st = new State(state, cases, deaths);
             states.add(st);
         }
-        
+
         printer();
-        
+
         scan.close();
     }
 
 
+    /**
+     * Private parseInt method turns the passed
+     * array of strings into an array of
+     * ints to store their data
+     * 
+     * @param data
+     *            Array you are turning to ints
+     * 
+     * @return The array of ints
+     */
     private int[] parseInt(String[] data) {
         int[] arr = { 0, 0, 0, 0, 0 };
         for (int i = 0; i < data.length; i++) {
@@ -72,10 +99,20 @@ public class CovidReader {
     }
 
 
+    /**
+     * Getter method for the states variable
+     * 
+     * @return LinkedList of type state
+     */
     public LinkedList<State> getStates() {
         return states;
     }
-    
+
+
+    /**
+     * Private printer method prints out the information
+     * as expected by the input test class
+     */
     private void printer() {
         State state = null;
         LinkedList<Race> races = null;
@@ -96,7 +133,7 @@ public class CovidReader {
                 }
                 else {
                     System.out.println(race.calculateCFR() + "% CFR");
-                }               
+                }
             }
             System.out.println("=====");
             races.insertionSort(new SortByCFR());
@@ -115,40 +152,4 @@ public class CovidReader {
             System.out.println("=====");
         }
     }
-
-// private LinkedList<Race> raceReader(String fileName)
-// throws FileNotFoundException {
-// LinkedList<Race> temp = new LinkedList<Race>();
-// Scanner file = new Scanner(new File(fileName));
-//
-// return temp;
-// }
-//
-//
-// private State[] stateReader(String fileName)
-// throws FileNotFoundException,
-// CovidDataException {
-// State[] temp = new State[6];
-// Scanner file = new Scanner(new File(fileName));
-//
-// String string = file.next();
-// String stateSt = string.substring(0, 5);
-// State state = null;
-// LinkedList<Race> race = null;
-//
-// for (int i = 0; i < temp.length; i++) {
-// if (!file.hasNext()) {
-// throw new CovidDataException("Not enough planets");
-// }
-// string = file.next();
-// stateSt = string.substring(0, 2);
-//
-//
-// state = new State(stateSt, race);
-// temp[i] = state;
-// }
-//
-// return temp;
-// }
-
 }

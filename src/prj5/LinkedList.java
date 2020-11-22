@@ -4,8 +4,31 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * LinkedList class is our implementation
+ * of a DoubleLinkedLinked
+ * 
+ * @author Kevin Krupa (kevinkrupa13)
+ * @author Suha Dewan (suhad)
+ * 
+ * @version 2020.21.11
+ * 
+ * @param <E>
+ *            Type of variable in the database
+ */
 public class LinkedList<E> implements LList<E> {
 
+    /**
+     * Private node class used by the linkedlist class
+     * 
+     * @author Kevin Krupa (kevinkrupa13)
+     * @author Suha Dewan (suhad)
+     * 
+     * @version 2020.21.11
+     * 
+     * @param <E>
+     *            Data type used in node
+     */
     private static class Node<E> {
         private Node<E> next;
         private Node<E> previous;
@@ -20,7 +43,18 @@ public class LinkedList<E> implements LList<E> {
         public Node(E d) {
             data = d;
         }
-        
+
+
+        /**
+         * Node constructor
+         * 
+         * @param prev
+         *            Previous node reference
+         * @param d
+         *            Data
+         * @param next
+         *            Next node reference
+         */
         public Node(Node<E> prev, E d, Node<E> next) {
             previous = prev;
             data = d;
@@ -94,7 +128,6 @@ public class LinkedList<E> implements LList<E> {
         tail.setPrevious(head);
         size = 0;
     }
-
 
 
     /**
@@ -312,13 +345,22 @@ public class LinkedList<E> implements LList<E> {
         builder.append("}");
         return builder.toString();
     }
-    
-    
+
+
+    /**
+     * Private helper method for sorting
+     * 
+     * @param comp
+     *            Comparator input
+     * @param nodeToInsert
+     *            Node input automatically passed
+     */
     private void sort(Comparator<E> comp, Node<E> nodeToInsert) {
         E item = nodeToInsert.getData();
         Node<E> currentNode = head.next();
         Node<E> prevNode = head;
-        while ((currentNode != null) && (comp.compare(item, currentNode.getData()) > 0)) {
+        while ((currentNode != null) && (comp.compare(item, currentNode
+            .getData()) > 0)) {
             prevNode = currentNode;
             currentNode = currentNode.next();
         }
@@ -335,7 +377,15 @@ public class LinkedList<E> implements LList<E> {
             head.setNext(nodeToInsert);
         }
     }
-    
+
+
+    /**
+     * Sort method for this linked list. Sorts with the
+     * insertion sort method
+     * 
+     * @param comp
+     *            Comparator input
+     */
     public void insertionSort(Comparator<E> comp) {
         Node<E> firstNode = head.next();
         if (size() > 1) {
@@ -360,8 +410,18 @@ public class LinkedList<E> implements LList<E> {
         return new DLListIterator<E>();
     }
 
-
-
+    /**
+     * Private iterator class used by the linked
+     * list class
+     * 
+     * @author Kevin Krupa (kevinkrupa13)
+     * @author Suha Dewan (suhad)
+     * 
+     * @version 2020.21.11
+     * 
+     * @param <A>
+     *            Data type used by iterator
+     */
     private class DLListIterator<A> implements Iterator<E> {
 
         private int index;
@@ -401,6 +461,6 @@ public class LinkedList<E> implements LList<E> {
             index++;
             return get(index - 1);
         }
-        
+
     }
 }

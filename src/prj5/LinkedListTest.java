@@ -8,8 +8,13 @@ import java.util.NoSuchElementException;
 import student.TestCase;
 
 /**
- * @author suhad
- *
+ * LinkedListTest is the test class
+ * for the linkedlist class
+ * 
+ * @author Kevin Krupa (kevinkrupa13)
+ * @author Suha Dewan (suhad)
+ * 
+ * @version 2020.21.11
  */
 public class LinkedListTest extends TestCase {
 
@@ -29,7 +34,7 @@ public class LinkedListTest extends TestCase {
      * 
      * @throws CovidDataException
      */
-    public void testSortAlpha() throws CovidDataException {
+    public void testSortAlpha() {
         LinkedList<Race> raceList = new LinkedList<Race>();
         Race race1 = new Race("Asian", 100, 5);
         Race race2 = new Race("White", 200, 50);
@@ -50,7 +55,7 @@ public class LinkedListTest extends TestCase {
      * @throws CovidDataException
      * 
      */
-    public void testCFR() throws CovidDataException {
+    public void testCFR() {
         LinkedList<Race> raceList = new LinkedList<Race>();
         Race race1 = new Race("Asian", 100, 50);
         Race race2 = new Race("White", 100, 80);

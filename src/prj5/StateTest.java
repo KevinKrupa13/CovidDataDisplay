@@ -1,25 +1,25 @@
 package prj5;
 
 /**
+ * StateTest is the test class
+ * for the State class
  * 
  * @author Kevin Krupa (kevinkrupa13)
- * @version 11/21/20
  * @author Suha Dewan (suhad)
- * @version 11/21/20
- *
+ * 
+ * @version 2020.21.11
  */
-
 public class StateTest extends student.TestCase {
 
     private State state;
     private LinkedList<Race> race;
-    private int[] cases;
-    private int[] deaths;
 
     /**
      * sets up tests
      */
-    public void setUp() throws CovidDataException {
+    public void setUp() {
+        int[] cases;
+        int[] deaths;
         race = new LinkedList<Race>();
         cases = new int[5];
         deaths = new int[5];
@@ -41,10 +41,8 @@ public class StateTest extends student.TestCase {
 
     /**
      * tests getter methods
-     * 
-     * @throws CovidDataException
      */
-    public void testGetters() throws CovidDataException {
+    public void testGetters() {
         Race white = new Race("white", 100, 90);
         Race black = new Race("black", 90, 30);
         Race latinx = new Race("latinx", 200, 90);
@@ -62,10 +60,8 @@ public class StateTest extends student.TestCase {
 
     /**
      * tests sort by alphabetical
-     * 
-     * @throws CovidDataException
      */
-    public void testSortAlpha() throws CovidDataException {
+    public void testSortAlpha() {
         Race white = new Race("white", 100, 90);
         Race black = new Race("black", 90, 30);
         Race latinx = new Race("latinx", 200, 90);
@@ -82,10 +78,8 @@ public class StateTest extends student.TestCase {
 
     /**
      * tests sort by CFR
-     * 
-     * @throws CovidDataException
      */
-    public void testSortCFR() throws CovidDataException {
+    public void testSortCFR() {
         Race white = new Race("white", 100, 90);
         Race black = new Race("black", 90, 30);
         Race latinx = new Race("latinx", 200, 90);
