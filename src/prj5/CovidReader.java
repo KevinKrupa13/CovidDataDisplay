@@ -1,5 +1,14 @@
 package prj5;
 
+/**
+ * 
+ * @author Kevin Krupa (kevinkrupa13)
+ * @version 11/21/20
+ * @author Suha Dewan (suhad)
+ * @version 11/21/20
+ *
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -74,6 +83,7 @@ public class CovidReader {
         for (int i = 0; i < 6; i++) {
             state = states.get(i);
             races = state.getRace();
+            races.insertionSort(new SortByAlpha());
             // Sort the races variable alphabetically here
             System.out.println(state.getName());
             for (int x = 0; x < 5; x++) {
@@ -84,6 +94,7 @@ public class CovidReader {
             }
             System.out.println("=====");
             // Sort the races variable by CFR values
+            races.insertionSort(new SortByCFR());
             for (int x = 0; x < 5; x++) {
                 race = races.get(x);
                 System.out.print(race.getRace() + ": ");
