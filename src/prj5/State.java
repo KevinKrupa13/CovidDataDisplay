@@ -4,7 +4,10 @@
 package prj5;
 
 /**
- * @author suhad
+ * @author Kevin Krupa (kevinkrupa13)
+ * @version 11/21/20
+ * @author Suha Dewan (suhad)
+ * @version 11/21/20
  *
  */
 public class State {
@@ -14,8 +17,8 @@ public class State {
 
     public static final int WHITE = 0;
     public static final int BLACK = 1;
-    public static final int ASIAN = 2;
-    public static final int LATINX = 3;
+    public static final int LATINX = 2;
+    public static final int ASIAN = 3;
     public static final int OTHER = 4;
 
     public State(String name, int[] cases, int[] deaths)
@@ -26,10 +29,10 @@ public class State {
             deaths[WHITE])));
         race.add(new Race("black", new Long(cases[BLACK]), new Long(
             deaths[BLACK])));
-        race.add(new Race("asian", new Long(cases[ASIAN]), new Long(
-            deaths[ASIAN])));
         race.add(new Race("latinx", new Long(cases[LATINX]), new Long(
             deaths[LATINX])));
+        race.add(new Race("asian", new Long(cases[ASIAN]), new Long(
+            deaths[ASIAN])));
         race.add(new Race("other", new Long(cases[OTHER]), new Long(
             deaths[OTHER])));
     }
@@ -64,7 +67,8 @@ public class State {
         race.insertionSort(new SortByAlpha());
         return race;
     }
-    
+
+
     /**
      * method that sorts by CFR
      * 
