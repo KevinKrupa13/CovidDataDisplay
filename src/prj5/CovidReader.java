@@ -91,7 +91,7 @@ public class CovidReader {
                 System.out.print(race.getRace() + ": ");
                 System.out.print(race.getCases() + " cases, ");
                 CFR = race.calculateCFR();
-                if (CFR < 0) {
+                if (CFR == -1.0 || CFR == 1.0) {
                     System.out.println(((int)CFR) + "% CFR");
                 }
                 else {
@@ -105,7 +105,7 @@ public class CovidReader {
                 System.out.print(race.getRace() + ": ");
                 System.out.print(race.getCases() + " cases, ");
                 CFR = race.calculateCFR();
-                if (CFR < 0) {
+                if (CFR == -1.0 || CFR == 1.0) {
                     System.out.println(((int)CFR) + "% CFR");
                 }
                 else {
