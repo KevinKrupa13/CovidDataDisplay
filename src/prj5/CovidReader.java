@@ -84,7 +84,6 @@ public class CovidReader {
             state = states.get(i);
             races = state.getRace();
             races.insertionSort(new SortByAlpha());
-            // Sort the races variable alphabetically here
             System.out.println(state.getName());
             for (int x = 0; x < 5; x++) {
                 race = races.get(x);
@@ -93,7 +92,6 @@ public class CovidReader {
                 System.out.println(race.calculateCFR() + "% CFR");
             }
             System.out.println("=====");
-            // Sort the races variable by CFR values
             races.insertionSort(new SortByCFR());
             for (int x = 0; x < 5; x++) {
                 race = races.get(x);
