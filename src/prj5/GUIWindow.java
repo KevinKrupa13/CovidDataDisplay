@@ -1,6 +1,7 @@
 package prj5;
 
 import cs2.Button;
+import cs2.Shape;
 import cs2.Window;
 
 public class GUIWindow {
@@ -15,6 +16,14 @@ public class GUIWindow {
     private Button quit;
     private Button SortByAlpha;
     private Button SortByCFR;
+    private CovidReader reader;
+    private Shape bar1Shape;
+    private Shape bar2Shape;
+    private Shape bar3Shape;
+    private Shape bar4Shape;
+    private Shape bar5Shape;
+    
+    private static final int BAR_HEIGHT = 10;
 
     public GUIWindow(Input filereader) {
         window = new Window("Covid data visualisation");
@@ -38,6 +47,11 @@ public class GUIWindow {
      */
     public void clickedQuit(Button button) {
         System.exit(0);
+    }
+    
+    public void sortByCFR(Button button) {
+        window.removeAllShapes();
+        
     }
 
 }
