@@ -25,10 +25,9 @@ public class Input {
      *             Thrown if file was missing information
      */
     @SuppressWarnings("unused")
-    public static void main(String[] args)
-        throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException {
         CovidReader covidReader;
-        if (args[0] != null) {
+        if (args.length > 0) {
             covidReader = new CovidReader(args[0]);
         }
         else {

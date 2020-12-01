@@ -35,6 +35,7 @@ public class CovidReader {
     public CovidReader(String fileName) throws FileNotFoundException {
         states = new LinkedList<State>();
         dataReader(fileName);
+        new GUIWindow(fileName, this);
     }
 
 
