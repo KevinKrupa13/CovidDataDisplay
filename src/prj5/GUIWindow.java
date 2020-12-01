@@ -37,7 +37,7 @@ public class GUIWindow {
     private static final int[] XBAR = { WINDOW_WIDTH / (BARS + 1), WINDOW_WIDTH
         / (BARS + 1) * 2, WINDOW_WIDTH / (BARS + 1) * 3, WINDOW_WIDTH / (BARS
             + 1) * 4, WINDOW_WIDTH / (BARS + 1) * 5 };
-    private static final int YBAR = WINDOW_HEIGHT - 250;
+    private static final int YBAR = WINDOW_HEIGHT - 300;
     private static final int HEIGHT_FACTOR = 30;
 
     public GUIWindow(String args, CovidReader reader)
@@ -52,13 +52,13 @@ public class GUIWindow {
         stateGraph = null;
         df = new DecimalFormat("###.#");
 
-        quit = new Button("Quit");
-        quit.onClick(this, "clickedQuit");
-        window.addButton(quit, WindowSide.NORTH);
-
         sortByAlpha = new Button("Sort By Alpha");
         sortByAlpha.onClick(this, "sortByAlpha");
         window.addButton(sortByAlpha, WindowSide.NORTH);
+        
+        quit = new Button("Quit");
+        quit.onClick(this, "clickedQuit");
+        window.addButton(quit, WindowSide.NORTH);
 
         sortByCFR = new Button("Sort By CFR");
         sortByCFR.onClick(this, "sortByCFR");
@@ -123,7 +123,7 @@ public class GUIWindow {
     public void clickedRep(State curr) {
         window.removeAllShapes();
         stateGraph = curr;
-        setGraphTitle(curr.getName());
+        changeGraphTitle(curr.getName());
         if (sort == 0) {
             race = curr.sortByCFR();
         }
@@ -144,10 +144,10 @@ public class GUIWindow {
     }
 
 
-    public void setGraphTitle(String name) {
-        TextShape title = new TextShape(0, 25, name
+    public void changeGraphTitle(String name) {
+        TextShape title = new TextShape(0, 30, name
             + " Case Fatality Ratios by Race");
-        title.setX(WINDOW_WIDTH / 2 * title.getWidth() / 2);
+        title.setX(WINDOW_WIDTH / 2 - title.getWidth() / 2);
         window.addShape(title);
     }
 
@@ -158,9 +158,10 @@ public class GUIWindow {
         while (raceIter.hasNext()) {
             Race curr = raceIter.next();
             window.addShape(createShape(i, curr.calculateCFR()));
-            window.addShape(new TextShape(XBAR[i], YBAR + 10, curr.getRace()));
+            window.addShape(new TextShape(XBAR[i] - BAR_WIDTH / 2, YBAR + 10,
+                curr.getRace()));
             if (curr.calculateCFR() > -1) {
-                window.addShape(new TextShape(XBAR[i], YBAR + 40, String
+                window.addShape(new TextShape(XBAR[i] - BAR_WIDTH / 2, YBAR + 40, String
                     .valueOf(df.format(curr.calculateCFR()) + "%")));
             }
             i++;
@@ -187,7 +188,7 @@ public class GUIWindow {
         }
         else {
             sort = 0;
-            setGraphTitle(stateGraph.getName());
+            changeGraphTitle(stateGraph.getName());
             race = stateGraph.sortByCFR();
             showRaces(race);
         }
@@ -201,7 +202,7 @@ public class GUIWindow {
         }
         else {
             sort = 1;
-            setGraphTitle(stateGraph.getName());
+            changeGraphTitle(stateGraph.getName());
             race = stateGraph.sortByAlpha();
             showRaces(race);
         }
