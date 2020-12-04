@@ -12,6 +12,16 @@ import cs2.WindowSide;
 
 public class GUIWindow {
 
+    private static final int WINDOW_WIDTH = 900;
+    private static final int WINDOW_HEIGHT = 600;
+    private static final int BARS = 5;
+    private static final int BAR_WIDTH = 20;
+    private static final int[] XBAR = { WINDOW_WIDTH / (BARS + 1), WINDOW_WIDTH
+        / (BARS + 1) * 2, WINDOW_WIDTH / (BARS + 1) * 3, WINDOW_WIDTH / (BARS
+            + 1) * 4, WINDOW_WIDTH / (BARS + 1) * 5 };
+    private static final int YBAR = WINDOW_HEIGHT - 300;
+    private static final int HEIGHT_FACTOR = 30;
+
     private Window window;
     private Button repDC;
     private Button repGA;
@@ -24,22 +34,22 @@ public class GUIWindow {
     private Button sortByCFR;
     private CovidReader reader;
     private State stateGraph;
-    DecimalFormat df;
     LinkedList<State> state;
     LinkedList<Race> race;
     Iterator<State> stateIter;
     Iterator<Race> raceIter;
+    DecimalFormat df;
     private int sort;
-    private static final int WINDOW_WIDTH = 900;
-    private static final int WINDOW_HEIGHT = 600;
-    private static final int BARS = 5;
-    private static final int BAR_WIDTH = 20;
-    private static final int[] XBAR = { WINDOW_WIDTH / (BARS + 1), WINDOW_WIDTH
-        / (BARS + 1) * 2, WINDOW_WIDTH / (BARS + 1) * 3, WINDOW_WIDTH / (BARS
-            + 1) * 4, WINDOW_WIDTH / (BARS + 1) * 5 };
-    private static final int YBAR = WINDOW_HEIGHT - 300;
-    private static final int HEIGHT_FACTOR = 30;
 
+    /**
+     * Constructor for the GUI window
+     * 
+     * @param args
+     *            filename
+     * @param reader
+     *            covidreader
+     * @throws FileNotFoundException
+     */
     public GUIWindow(String args, CovidReader reader)
         throws FileNotFoundException {
         window = new Window("Covid data visualisation");
@@ -55,7 +65,7 @@ public class GUIWindow {
         sortByAlpha = new Button("Sort By Alpha");
         sortByAlpha.onClick(this, "sortByAlpha");
         window.addButton(sortByAlpha, WindowSide.NORTH);
-        
+
         quit = new Button("Quit");
         quit.onClick(this, "clickedQuit");
         window.addButton(quit, WindowSide.NORTH);
@@ -90,37 +100,79 @@ public class GUIWindow {
     }
 
 
+    /**
+     * method for the clickedRepDC button
+     * 
+     * @param button
+     *            for clickedRepDC
+     */
     public void clickedRepDC(Button button) {
         clickedRep(state.get(0));
     }
 
 
+    /**
+     * method for the clickedRepGA button
+     * 
+     * @param button
+     *            for clickedRepGA
+     */
     public void clickedRepGA(Button button) {
         clickedRep(state.get(1));
     }
 
 
+    /**
+     * method for the clickedRepMD button
+     * 
+     * @param button
+     *            for clickedRepMD
+     */
     public void clickedRepMD(Button button) {
         clickedRep(state.get(2));
     }
 
 
+    /**
+     * method for the clickedRepNC button
+     * 
+     * @param button
+     *            for clickedRepNC
+     */
     public void clickedRepNC(Button button) {
         clickedRep(state.get(3));
     }
 
 
+    /**
+     * method for the clickedRepTN button
+     * 
+     * @param button
+     *            for clickedRepTN
+     */
     public void clickedRepTN(Button button) {
         clickedRep(state.get(4));
     }
 
 
+    /**
+     * method for the clickedRepVA button
+     * 
+     * @param button
+     *            for clickedRepVA
+     */
     public void clickedRepVA(Button button) {
         clickedRep(state.get(5));
     }
 
 
-    public void clickedRep(State curr) {
+    /**
+     * helper method for the clickedRep buttons
+     * 
+     * @param button
+     *            for clickedRep
+     */
+    private void clickedRep(State curr) {
         window.removeAllShapes();
         stateGraph = curr;
         changeGraphTitle(curr.getName());
@@ -138,13 +190,21 @@ public class GUIWindow {
      * clickedQuit method
      * 
      * @param button
+     *            that quits window
      */
     public void clickedQuit(Button button) {
         System.exit(0);
     }
 
 
-    public void changeGraphTitle(String name) {
+    /**
+     * helper method that changes the title of the graph
+     * depending on the rep
+     * 
+     * @param name
+     *            of rep state
+     */
+    private void changeGraphTitle(String name) {
         TextShape title = new TextShape(0, 30, name
             + " Case Fatality Ratios by Race");
         title.setX(WINDOW_WIDTH / 2 - title.getWidth() / 2);
@@ -152,7 +212,13 @@ public class GUIWindow {
     }
 
 
-    public void showRaces(LinkedList<Race> race) {
+    /**
+     * helper method that displays the races below the bars
+     * 
+     * @param race
+     *            list of races
+     */
+    private void showRaces(LinkedList<Race> race) {
         raceIter = race.iterator();
         int i = 0;
         while (raceIter.hasNext()) {
@@ -161,15 +227,25 @@ public class GUIWindow {
             window.addShape(new TextShape(XBAR[i] - BAR_WIDTH / 2, YBAR + 10,
                 curr.getRace()));
             if (curr.calculateCFR() > -1) {
-                window.addShape(new TextShape(XBAR[i] - BAR_WIDTH / 2, YBAR + 40, String
-                    .valueOf(df.format(curr.calculateCFR()) + "%")));
+                window.addShape(new TextShape(XBAR[i] - BAR_WIDTH / 2, YBAR
+                    + 40, String.valueOf(df.format(curr.calculateCFR())
+                        + "%")));
             }
             i++;
         }
     }
 
 
-    public Shape createShape(int index, double CFR) {
+    /**
+     * helper method that creates the bars
+     * 
+     * @param index
+     *            for x bar
+     * @param CFR
+     *            for height of bar
+     * @return
+     */
+    private Shape createShape(int index, double CFR) {
         if (CFR > 0) {
             int height = (int)(HEIGHT_FACTOR * CFR);
             return new Shape(XBAR[index], YBAR - height, BAR_WIDTH, height,
@@ -181,6 +257,12 @@ public class GUIWindow {
     }
 
 
+    /**
+     * method for the sortByCFR button
+     * 
+     * @param button
+     *            sortByCFR button
+     */
     public void sortByCFR(Button button) {
         window.removeAllShapes();
         if (stateGraph == null) {
@@ -195,6 +277,12 @@ public class GUIWindow {
     }
 
 
+    /**
+     * method for the sortByAlpha button
+     * 
+     * @param button
+     *            sortByAlpha button
+     */
     public void sortByAlpha(Button button) {
         window.removeAllShapes();
         if (stateGraph == null) {
