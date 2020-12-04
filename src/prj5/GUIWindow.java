@@ -10,6 +10,15 @@ import cs2.TextShape;
 import cs2.Window;
 import cs2.WindowSide;
 
+/**
+ * GUI Window that deals with the visual aspect of the window
+ * 
+ * @author Kevin Krupa (kevinkrupa13)
+ * @author Suha Dewan (suhad)
+ * 
+ * @version 2020.02.12
+ */
+
 public class GUIWindow {
 
     private static final int WINDOW_WIDTH = 900;

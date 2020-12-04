@@ -21,23 +21,6 @@ public class RaceTest extends student.TestCase {
     }
 
 
-//    /**
-//     * Tests the exception case for the constructor
-//     */
-//    public void testConstructor() {
-//        Exception exception = null;
-//        try {
-//            race = new Race("Race", 5, 10);
-//        }
-//        catch (CovidDataException e) {
-//            exception = e;
-//        }
-//
-//        assertNotNull(exception);
-//        assertTrue(exception.getMessage().equals("Too many deaths"));
-//    }
-
-
     /**
      * Tsts the getRace() method
      */
@@ -76,6 +59,11 @@ public class RaceTest extends student.TestCase {
 
         assertEquals(difCases.calculateCFR(), -1.0, 0.0);
         assertEquals(difDeaths.calculateCFR(), -1.0, 0.0);
+
+        Race other;
+        other = new Race("Race", -1, 728);
+        assertEquals(other.calculateCFR(), -1.0, 0.0);
+
     }
 
 

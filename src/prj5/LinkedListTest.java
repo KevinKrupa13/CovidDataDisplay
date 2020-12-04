@@ -48,6 +48,11 @@ public class LinkedListTest extends TestCase {
         assertEquals(race3, raceList.get(1));
         assertEquals(race2, raceList.get(2));
 
+        LinkedList<Race> noRace = new LinkedList<Race>();
+        Race race4 = new Race("", 100, 5);
+        noRace.add(race4);
+        noRace.insertionSort(sort);
+        assertEquals(race4, noRace.get(0));
     }
 
 
@@ -68,6 +73,14 @@ public class LinkedListTest extends TestCase {
         assertEquals(race2, raceList.get(0));
         assertEquals(race1, raceList.get(1));
         assertEquals(race3, raceList.get(2));
+        LinkedList<Race> races = new LinkedList<Race>();
+        Race race4 = new Race("Asian", 100, 50);
+        Race race5 = new Race("White", 100, 50);
+        races.add(race5);
+        races.add(race4);
+        races.insertionSort(sort);
+        assertEquals(race4, races.get(0));
+        assertEquals(race5, races.get(1));
     }
 
 
